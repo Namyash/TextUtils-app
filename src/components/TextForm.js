@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 export default function TextForm(props) {
     const handleUpClick = () =>{
@@ -70,30 +70,30 @@ export default function TextForm(props) {
   return (
     <>
    <div className="container"  style={{color: props.mode ==='dark'?'white':'#042743'}}>
-    <h1>{props.heading}</h1>
+    <h1 className="mb-4">{props.heading}</h1>
   <div className="mb-3">
-    <textarea className="form-control" value= {text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'grey':'white' , color: props.mode==='dark'?'white':'#042743'}} id="mybox" rows="8"></textarea>
+    <textarea className="form-control" value= {text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'#13466e':'white' , color: props.mode==='dark'?'white':'#042743'}} id="mybox" rows="8"></textarea>
   </div>
   <div className="button-container my-3">
-  <button className='btn btn-primary mx-1 my-1 px-2 py-1' onClick={handleUpClick}>Convert to Uppercase</button>
-  <button className='btn btn-primary mx-1 my-1 px-2 py-1' onClick={handleLoClick}>Convert to LowerCase</button>
-  <button className='btn btn-primary mx-1 my-1 px-2 py-1' onClick={capitalizeFirstLetter}>Capitalize First Letter</button>
-  <button className='btn btn-primary mx-1 my-1 px-2 py-1' onClick={reverseText}>Reverse The Text</button>
-  <button className='btn btn-primary mx-1 my-1 px-2 py-1' onClick={removeextraspace}>Remove Extra Spaces</button>
-  <button className='btn btn-primary mx-1 my-1 px-2 py-1' onClick={getemails}>fetch emails</button>
-  <button className='btn btn-primary mx-1 my-1 px-2 py-1' onClick={copytoclipboard}>Copy To Clipboard</button>
-  <button className='btn btn-primary mx-1 my-1 px-2 py-1' onClick={clearText}>Clear Text</button>
+  <button className='btn btn-primary mx-1 my-1 px-2 py-1' disabled={text.length===0} onClick={handleUpClick}>Convert to Uppercase</button>
+  <button className='btn btn-primary mx-1 my-1 px-2 py-1' disabled={text.length===0} onClick={handleLoClick}>Convert to LowerCase</button>
+  <button className='btn btn-primary mx-1 my-1 px-2 py-1' disabled={text.length===0} onClick={capitalizeFirstLetter}>Capitalize First Letter</button>
+  <button className='btn btn-primary mx-1 my-1 px-2 py-1' disabled={text.length===0} onClick={reverseText}>Reverse The Text</button>
+  <button className='btn btn-primary mx-1 my-1 px-2 py-1' disabled={text.length===0} onClick={removeextraspace}>Remove Extra Spaces</button>
+  <button className='btn btn-primary mx-1 my-1 px-2 py-1' disabled={text.length===0} onClick={getemails}>fetch emails</button>
+  <button className='btn btn-primary mx-1 my-1 px-2 py-1' disabled={text.length===0} onClick={copytoclipboard}>Copy To Clipboard</button>
+  <button className='btn btn-primary mx-1 my-1 px-2 py-1' disabled={text.length===0} onClick={clearText}>Clear Text</button>
 
   </div>
   </div>
   <div className="container my-3" style={{color: props.mode==='dark'?'white':'#042743'}}>
+    <h1>Preview : </h1>
+    <p>{text.length>0?text:"Nothing to preview it!"}</p>
     <h1>Your Text Summary : </h1>
     <b>{text.split(" ").filter((element)=>{return element.length!==0}).length}</b> words <b>{text.length}</b> characters ||
-    <b> {0.008 * text.split(" ").length}</b> Minutes read
-    <h2>Preview</h2>
-    <p>{text.length>0?text:"Enter Something to preview it"}</p>
-    <p>reversed text is : {reversedText}</p>
-    <h3>Emails fetched from the text you have entered</h3>
+    <b> {0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length}</b> Minutes read
+    <p><span className="fw-bold">reversed text is </span>: {reversedText}</p>
+    <h1>Emails fetched from the text you have entered</h1>
     <p>{fetchemails}</p>
     <p>{clearText}</p>
   </div>
